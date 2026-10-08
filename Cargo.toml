@@ -1,0 +1,10 @@
+[package]
+name = "sotn_helper"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow = { version = "1.0.104", features = ["backtrace"] }
+clap = { version = "4.6.7", features = ["derive", "string"] }
+regex = "1.13.1"
+static_assertions = "1.1.0"
