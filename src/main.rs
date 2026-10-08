@@ -1,5 +1,6 @@
 use clap::Parser;
 
+mod kinds;
 mod offset;
 mod types;
 

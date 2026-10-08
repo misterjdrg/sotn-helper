@@ -1,6 +1,6 @@
 use regex::Regex;
 
-use crate::types::{self, Struct};
+use crate::{kinds::Struct, types};
 use core::fmt::Write as _;
 
 pub fn call(kind: &Struct, line: &str) -> anyhow::Result<String> {
