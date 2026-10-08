@@ -1,6 +1,6 @@
 use regex::Regex;
 
-use crate::types::Struct;
+use crate::types::{self, Struct};
 use core::fmt::Write as _;
 
 pub fn call(kind: &Struct, line: &str) -> anyhow::Result<String> {
@@ -49,8 +49,8 @@ fn inner(kind: &Struct, var: &str, offset: i32) -> String {
     let array_off = (offset as f32 / kind.size() as f32).floor() as i32;
     let offset = offset - array_off * kind.size() as i32;
 
-    let var0 = var.to_string();
-    let mut var1 = kind.name.to_lowercase();
+    let var0 = var;
+    let mut var1 = kind.short_name;
 
     let field = kind.locate(offset as usize);
 
@@ -64,7 +64,7 @@ fn inner(kind: &Struct, var: &str, offset: i32) -> String {
         writeln!(&mut result, "{var1} = {var0} - {};", -array_off).unwrap();
     }
 
-    if field.0.2 == "ext" {
+    if kind.name == types::ENTITY.name && field.0.2 == "ext" {
         writeln!(&mut result, "{var1}->ext.ILLEGAL.u8[{}]", field.1).unwrap();
     } else {
         if field.1 == 0 {

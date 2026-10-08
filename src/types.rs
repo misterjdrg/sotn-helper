@@ -2,6 +2,7 @@ use static_assertions::{const_assert, const_assert_eq};
 
 pub struct Struct {
     pub name: &'static str,
+    pub short_name: &'static str,
     pub fields: &'static [Field],
 }
 /// offset size name
@@ -39,8 +40,9 @@ impl Struct {
     }
 }
 
-pub const ENTITY: Struct = Struct {
+pub static ENTITY: Struct = Struct {
     name: "Entity",
+    short_name: "entity",
     fields: &[
         Field(0x00, 4, "posX"),
         Field(0x04, 4, "posY"),
@@ -109,8 +111,9 @@ pub const ENTITY: Struct = Struct {
 const_assert!(ENTITY.check());
 const_assert_eq!(0xBC, ENTITY.size());
 
-pub const PRIMITIVE: Struct = Struct {
+pub static PRIMITIVE: Struct = Struct {
     name: "Primitive",
+    short_name: "prim",
     fields: &[
         Field(0x00, 2, "type"),
         Field(0x02, 2, "priority"),
@@ -134,8 +137,9 @@ pub const PRIMITIVE: Struct = Struct {
 const_assert!(PRIMITIVE.check());
 const_assert_eq!(0x24, PRIMITIVE.size());
 
-pub const ENEMY_DEF: Struct = Struct {
+pub static ENEMY_DEF: Struct = Struct {
     name: "EnemyDef",
+    short_name: "enemy_def",
     fields: &[
         Field(0x00, 4, "name"),
         Field(0x04, 2, "hitPoints"),

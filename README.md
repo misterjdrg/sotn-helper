@@ -20,6 +20,11 @@ entity = self - 1;
 entity->facingLeft
 
 
+> sotn_helper offset entity unk-10
+entity = self - 1;
+entity->ext.ILLEGAL.u8[48]
+
+
 > sotn_helper offset entity "custom_entity->unk-a8"
 entity = custom_entity - 1;
 entity->facingLeft
