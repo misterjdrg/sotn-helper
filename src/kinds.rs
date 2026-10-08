@@ -1,6 +1,7 @@
 #[macro_export]
 macro_rules! ptr {
     ($e: expr) => {{
+        use crate::kinds::Kind;
         static E: &'static dyn Kind = &$e;
         static K: &'static dyn Kind = &crate::kinds::Ptr(E);
         K
@@ -9,6 +10,7 @@ macro_rules! ptr {
 #[macro_export]
 macro_rules! array {
     ($e: expr, $c: expr) => {{
+        use crate::kinds::Kind;
         static E: &'static dyn Kind = &$e;
         static K: &'static dyn Kind = &crate::kinds::Array(E, $c);
         K
