@@ -1,5 +1,10 @@
 # sotn-helper
 
+## Install
+```bash
+> cargo install --path=.
+```
+
 ## Usage
 ### Offset
 Get field name (and pointer offset if apropriate)
